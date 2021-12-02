@@ -1,0 +1,56 @@
+from pathlib import Path
+from PIL import Image
+import os
+import glob
+import shutil
+import pyperclip
+
+text = str(pyperclip.paste())
+
+folder_path = (text)
+
+def convert_from_jpeg_to_png():
+    paths = Path(text).glob("*.jpeg")
+    for path in paths:
+        webp_path = convert_from_webp_to_png(path)
+
+    test = os.listdir(folder_path)
+
+    for images in test:
+        if images.endswith(".jpeg"):
+            os.remove(os.path.join(folder_path, images))
+
+def convert_from_jpg_to_png():
+    paths = Path(text).glob("*.jpg")
+    for path in paths:
+        webp_path = convert_from_webp_to_png(path)
+
+    test = os.listdir(folder_path)
+
+    for images in test:
+        if images.endswith(".jpg"):
+            os.remove(os.path.join(folder_path, images))
+
+def convert_from_webp_to_png(source):
+
+    destination = source.with_suffix(".png")
+
+    image = Image.open(source)
+    image.save(destination, format="png")
+
+    return destination
+
+def main():
+    paths = Path(text).glob("*.webp")
+    for path in paths:
+        webp_path = convert_from_webp_to_png(path)
+
+    test = os.listdir(folder_path)
+
+    for images in test:
+        if images.endswith(".webp"):
+            os.remove(os.path.join(folder_path, images))
+
+main()
+convert_from_jpg_to_png()
+convert_from_jpeg_to_png()
