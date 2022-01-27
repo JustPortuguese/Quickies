@@ -9,17 +9,6 @@ text = str(pyperclip.paste())
 
 folder_path = (text)
 
-def convert_from_jpeg_to_png():
-    paths = Path(text).glob("*.jpeg")
-    for path in paths:
-        webp_path = convert_from_webp_to_png(path)
-
-    test = os.listdir(folder_path)
-
-    for images in test:
-        if images.endswith(".jpeg"):
-            os.remove(os.path.join(folder_path, images))
-
 def convert_from_jpg_to_png():
     paths = Path(text).glob("*.jpg")
     for path in paths:
@@ -53,4 +42,3 @@ def main():
 
 main()
 convert_from_jpg_to_png()
-convert_from_jpeg_to_png()
