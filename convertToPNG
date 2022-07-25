@@ -40,5 +40,21 @@ def main():
         if images.endswith(".webp"):
             os.remove(os.path.join(folder_path, images))
 
+def resizeall():
+    text = str(pyperclip.paste())
+
+    folder_path = (text)
+
+    for file in os.listdir(folder_path):
+        if file.endswith(".png"):
+            basewidth = 1000
+            f_img = text+"/"+file
+            img = Image.open(f_img)
+            wpercent = (basewidth / float(img.size[0]))
+            hsize = int((float(img.size[1]) * float(wpercent)))
+            img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+            img.save(f_img)
+
 main()
 convert_from_jpg_to_png()
+resizeall()
